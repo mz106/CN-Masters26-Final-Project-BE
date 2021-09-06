@@ -4,11 +4,11 @@ const express = require("express");
 
 const port = process.env.PORT;
 
+const indexRouter = require("./routes/index");
+
 const app = express();
 
-app.use("/", (req, res) => {
-    res.status(200).send("Hello world");
-});
+app.use("/", indexRouter);
 
 app.listen(port, () => {
     console.log("app is listening");

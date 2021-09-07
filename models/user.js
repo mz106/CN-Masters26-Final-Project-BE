@@ -16,6 +16,7 @@ const User = connection.define( "User", {
   }
 );
 
+
 const main = async() =>{
     try{
         await User.sync({alter: true});

@@ -2,10 +2,6 @@ const {DataTypes} = require("sequelize");
 const{connection} = require("../db");
 
 const Products = connection.define("Products", {
-    Product_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
     name: {
         type: DataTypes.STRING,
         allowNull: false

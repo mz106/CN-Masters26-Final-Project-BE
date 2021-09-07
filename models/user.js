@@ -2,10 +2,6 @@ const { DataTypes } = require("sequelize");
 const { connection } = require("../db");
 
 const User = connection.define( "User", {
-    User_id: {
-        type: DataTypes.INTEGER,
-         allowNull: false
-      },
     name: {
       type: DataTypes.STRING,
        allowNull: false
@@ -16,7 +12,7 @@ const User = connection.define( "User", {
     },
   },
   {
-    indexes: [{ unique: true, fields: ["User_id"] }],
+    indexes: [{ unique: true, fields: ["UserId"] }],
   }
 );
 

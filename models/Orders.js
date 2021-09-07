@@ -1,11 +1,7 @@
 const {DataTypes} = require("sequelize");
 const{connection} = require("../db");
 
-const Orders = connection.define("Orders", {
-    Orders_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+const Orders = connection.define("orders", {
     OrderDate: {
         type: DataTypes.DATE,
         allowNull: false
@@ -26,13 +22,13 @@ const Orders = connection.define("Orders", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-}, { indexes: [{ unique: true, fields: ["Orders_id"] }],
+}, { indexes: [{ unique: true, fields: ["OrdersId"] }],
 });
 
-Orders.hasOne(User_id, { foreignKey: 'user_Id' });
+Orders.hasOne(User_id, { foreignKey: 'userId' });
 User.belongsTo(Users);
 
-Orders.hasOne(Product_id, { foreignKey: 'Product_Id' });
+Orders.hasOne(Product_id, { foreignKey: 'ProductId' });
 User.belongsTo(Users);
 
 const main = async() => {
@@ -45,4 +41,4 @@ const main = async() => {
 
 main();
 
-module.exports = orders;
+module.exports = Orders;

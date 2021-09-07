@@ -12,7 +12,7 @@ const User = connection.define( "User", {
     },
   },
   {
-    indexes: [{ unique: true, fields: ["UserId"] }],
+    // indexes: [{ unique: true, fields: ["UserId"] }],
   }
 );
 

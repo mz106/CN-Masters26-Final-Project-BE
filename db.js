@@ -5,11 +5,11 @@ let connection;
 
 if (process.env.NODE_ENV === "production") {
 
-    connection = new Sequelize(process.env.DATABASE_URL);
+    module.exports.connection = new Sequelize(process.env.DATABASE_URL);
 
 } else {
     
-    connection = new Sequelize(
+    module.exports.connection = new Sequelize(
         process.env.DB_NAME,
         process.env.DB_USER,
         process.env.DB_PASSWORD,
@@ -21,4 +21,6 @@ if (process.env.NODE_ENV === "production") {
     );
 }
 
-module.exports = connection;
+
+
+// module.exports = connection;

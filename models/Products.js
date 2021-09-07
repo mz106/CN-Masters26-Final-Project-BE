@@ -6,7 +6,7 @@ const Products = connection.define("Products", {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, { indexes: [{ unique: true, fields: ["Product_id"] }],
+}, { indexes: [{ unique: true, fields: ["ProductId"] }],
   });
 
 const main = async() => {

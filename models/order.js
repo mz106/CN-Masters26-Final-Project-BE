@@ -25,11 +25,11 @@ const Orders = connection.define("orders", {
 }, { indexes: [{ unique: true, fields: ["OrdersId"] }],
 });
 
-Orders.hasOne(User_id, { foreignKey: 'userId' });
-User.belongsTo(Users);
+// Orders.hasOne(User_id, { foreignKey: 'userId' });
+// User.belongsTo(Users);
 
-Orders.hasOne(Product_id, { foreignKey: 'ProductId' });
-User.belongsTo(Users);
+// Orders.hasOne(Product_id, { foreignKey: 'ProductId' });
+// User.belongsTo(Users);
 
 const main = async() => {
     try {

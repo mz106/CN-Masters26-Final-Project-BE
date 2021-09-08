@@ -1,7 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 
-const { addData } = require("../utils/test");
+const { addProducts } = require("../utils/test");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 });
 router.post("/", async (req, res) => {
   try {
-    await addData(
+    await addProducts(
       req.body.name,
       req.body.catagory,
       req.body.weight,

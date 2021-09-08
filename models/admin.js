@@ -16,7 +16,7 @@ const AdminProducts = connection.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    sizes: {
+    size: {
       type: DataTypes.STRING,
       allowNull: true,
     },

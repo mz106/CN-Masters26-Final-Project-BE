@@ -8,6 +8,26 @@ const AdminProducts = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    catagory: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    sizes: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {}
 );

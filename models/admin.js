@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { connection } = require("../db");
 
 const AdminProducts = connection.define(
-  "Products",
+  "AdminProducts",
   {
     name: {
       type: DataTypes.STRING,
@@ -27,7 +27,7 @@ const AdminProducts = connection.define(
     url: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
+    }
   },
   {}
 );

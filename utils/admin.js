@@ -8,7 +8,7 @@ const addProducts = async (name, catagory, weight, size, price, url) => {
     weight,
     size,
     price,
-    url,
+    url
   });
 
   await newProducts.save();

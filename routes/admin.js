@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     );
     res
       .status(201)
-      .json({ msg: `data has been created in the products table` });
+      .json({ msg: `data has been created in the products table: ${req.body.name}` });
   } catch (error) {
     res.status(500).json({ msg: `${error}` });
   }

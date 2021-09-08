@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 
-const connection = require("./db");
+const { connection } = require("./db");
 const port = process.env.PORT || 5000;
 
 const User = require("./models/user");
@@ -26,7 +26,7 @@ app.use("*", errorRouter);
 
 app.listen(port, async () => {
     console.log("app is listening");
-    // connection.authenticate();
+    connection.authenticate();
     await Test.sync({alter: true}); // This creates/updates tables
     console.log("HTTP Server Started");
 });

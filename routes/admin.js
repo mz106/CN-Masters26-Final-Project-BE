@@ -1,7 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 
-const { addProducts } = require("../utils/test");
+const { addProducts } = require("../utils/admin");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
       .status(201)
       .json({ msg: `data has been created in the products table` });
   } catch (error) {
-    res.status(500).json({ msg: error });
+    res.status(500).json({ msg: `${error}` });
   }
 });
 

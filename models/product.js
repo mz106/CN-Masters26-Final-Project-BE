@@ -6,8 +6,8 @@ const Products = connection.define("Products", {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, { indexes: [{ unique: true, fields: ["ProductId"] }],
-  });
+}, {},
+);
 
 const main = async() => {
     try {

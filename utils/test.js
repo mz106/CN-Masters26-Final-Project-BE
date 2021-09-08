@@ -2,19 +2,20 @@
 const req = require("express/lib/request");
 const Test = require("../models/test");
 
-const addTest = async (req, res) => {
-    try {
-        const newTest = await Test.build({
-            name: req.body.name
-        });
+const addTest = async (name) => {
+    
+        const newTest = await Test.build({name});
 
         await newTest.save();
 
-    } catch(error) {
-        console.log(error);
-    }
 }
 
+const listTest = async () => {
+
+    return await Test.findAll({attributes: ["name"] });
+};
+
 module.exports = {
-    addTest
+    addTest,
+    listTest
 };

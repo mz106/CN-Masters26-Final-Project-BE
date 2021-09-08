@@ -1,21 +1,26 @@
 
 const express = require("express");
 
-const { addTest } = require("../utils/test");
+const { addTest, listTest } = require("../utils/test");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.status(200).send("get test route works");
+    
+    try {
+        res.status(200).send(await listTest());
+    } catch (error) {
+        res.status(500).json({msg: error});
+    }
 });
 
 router.post("/", async (req, res) => {
 
     try {
-        await addTest(req, res);
+        await addTest(req.body.name);
         res.status(201).json({msg: `Test name ${req.body.name} has been created`});
     } catch (error) {
-        res.status(500).send(error)
+        res.status(500).json({msg: error});
     }
 });
 

@@ -9,12 +9,12 @@ const AdminProducts = connection.define(
       allowNull: false,
     },
   },
-  { indexes: [{ unique: true, fields: ["ProductId"] }] }
+  {}
 );
 
 const main = async () => {
   try {
-    await Products.sync({ alter: true });
+    await AdminProducts.sync({ alter: true });
   } catch (error) {
     console.log(error);
   }
@@ -23,3 +23,5 @@ const main = async () => {
 main();
 
 module.exports = AdminProducts;
+
+// indexes: [{ unique: true, fields: ["ProductId"] }]

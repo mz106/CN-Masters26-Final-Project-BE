@@ -1,7 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 
-const { saveAllProducts } = require("../utils/admin");
+const { saveAllProducts, deleteAllProducts } = require("../utils/admin");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -15,7 +15,15 @@ router.post("/", async (req, res) => {
     res.status(500).json({ msg: `${error}` });
   }
 });
-
+router.delete("/", async (req, res) => {
+  try {
+    const results = await deleteAllProducts();
+    res.status(200).json({ msg: `deleted ${results} products` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "products do not exist", error });
+  }
+});
 module.exports = router;
 
 // const names = [{ name: "Bob" }, { name: "Fred" }];

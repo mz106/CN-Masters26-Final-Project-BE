@@ -29,5 +29,6 @@ app.listen(port, async () => {
   connection.authenticate();
   await Test.sync({ alter: true }); // This creates/updates tables
   await Products.sync({ alter: true }); // This creates/updates tables
+  await User.sync({ alter: true }); // This creates/updates tables
   console.log("HTTP Server Started");
 });

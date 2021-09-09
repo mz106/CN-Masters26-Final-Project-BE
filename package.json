@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "container-start": "docker run --rm --name Mysql1 -dp 3306:3306 -v teamwin-data:/var/lib/mysql -v mysql-config:/etc mysql/mysql-server:latest",
+    "container-start": "docker run --rm --name Mysql1 -dp 3306:3306 -v mysql-data:/var/lib/mysql -v mysql-config:/etc mysql/mysql-server:latest",
     "container-stop": "Mysql1"
   },
   "keywords": [],

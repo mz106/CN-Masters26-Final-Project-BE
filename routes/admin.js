@@ -1,7 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 
-const { addProducts } = require("../utils/admin");
+const { saveAllProducts } = require("../utils/admin");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -9,20 +9,18 @@ router.get("/", (req, res) => {
 });
 router.post("/", async (req, res) => {
   try {
-    await addProducts(
-      req.body.name,
-      req.body.catagory,
-      req.body.weight,
-      req.body.size,
-      req.body.price,
-      req.body.url
-    );
-    res
-      .status(201)
-      .json({ msg: `data has been created in the products table: ${req.body.name}` });
+    await saveAllProducts(req.body);
+    res.status(201).json({ msg: `Added ${req.body.length} products` });
   } catch (error) {
     res.status(500).json({ msg: `${error}` });
   }
 });
 
 module.exports = router;
+
+// const names = [{ name: "Bob" }, { name: "Fred" }];
+
+// res.status(200).json(names.map((person) => person.name));
+
+// Or, you know, even
+// res.status(200).json(names);

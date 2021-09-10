@@ -2,11 +2,16 @@
 const express = require("express");
 const cors = require("cors");
 
-const { saveAllProducts, deleteAllProducts } = require("../utils/admin");
+const { saveAllProducts, deleteAllProducts, findAllProducts } = require("../utils/admin");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.status(200).send("admin/ working cors");
+router.post("/getproducts", async (req, res) => {
+  try { 
+    const products = await findAllProducts();
+    res.status(201).json({msg: await products.map(product => `${product.name}, ${product.url}`)});
+  } catch (error) {
+    res.status(500).json({msg: `${error}`});
+  }
 });
 
 //post route to get

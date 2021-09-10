@@ -1,12 +1,15 @@
-const { response } = require("express");
+
 const express = require("express");
+const cors = require("cors");
 
 const { saveAllProducts, deleteAllProducts } = require("../utils/admin");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.status(200).send("admin/ working");
+  res.status(200).send("admin/ working cors");
 });
+
+//post route to get
 router.post("/", async (req, res) => {
   try {
     await saveAllProducts(req.body);

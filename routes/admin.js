@@ -5,10 +5,10 @@ const cors = require("cors");
 const { saveAllProducts, deleteAllProducts, findAllProducts } = require("../utils/admin");
 const router = express.Router();
 
-router.post("/getproducts", async (req, res) => {
+router.get("/", async (req, res) => {
   try { 
     const products = await findAllProducts();
-    res.status(201).json({msg: await products.map(product => `${product.name}, ${product.url}`)});
+    res.status(201).json(products);
   } catch (error) {
     res.status(500).json({msg: `${error}`});
   }

@@ -2,16 +2,32 @@
 const express = require("express");
 const cors = require("cors");
 
-const { saveAllProducts, deleteAllProducts, findAllProducts } = require("../utils/admin");
+const { saveAllProducts, deleteAllProducts, findAllProducts, findAllProductsTest } = require("../utils/admin");
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+
+  const startIndex = ( page - 1) * limit;
+  const endIndex = page * limit;
+
+  
+  let results = {};
+
   try { 
     const products = await findAllProducts();
-    res.status(201).json(products);
+    return res.status(201).json(products.slice(startIndex, endIndex));
   } catch (error) {
     res.status(500).json({msg: `${error}`});
   }
+
+});
+
+router.get("/test/", async (req, res) => {
+  const products = await findAllProducts();
+  res.status(201).send(products);
 });
 
 //post route to get

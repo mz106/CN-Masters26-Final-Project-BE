@@ -1,5 +1,7 @@
 const Product = require("../models/product");
 
+const size = 6;
+
 const saveAllProducts = async (array) => await Product.bulkCreate(array);
 const deleteAllProducts = async () => await Product.destroy({ where: {} });
 const findAllProducts = async () => await Product.findAll({});

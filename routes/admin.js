@@ -7,18 +7,15 @@ const router = express.Router();
 
 
 router.get("/", async (req, res) => {
-  const page = parseInt(req.query.page);
-  const limit = parseInt(req.query.limit);
+  ;
+  // const limit = parseInt(req.query.limit) || 6;
 
-  const startIndex = ( page - 1) * limit;
-  const endIndex = page * limit;
-
-  
-  let results = {};
+  // const startIndex = ( offset - 1) * limit;
+  // const endIndex = offset * limit;
 
   try { 
-    const products = await findAllProducts();
-    return res.status(201).json(products.slice(startIndex, endIndex));
+    const products = await findAllProducts(parseInt(req.query.limit) || 6, parseInt(req.query.offset) || 1);
+    return res.status(200).json(products);
   } catch (error) {
     res.status(500).json({msg: `${error}`});
   }

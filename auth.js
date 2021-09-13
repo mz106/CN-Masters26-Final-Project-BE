@@ -19,8 +19,14 @@ const register = async (name, email, password, done) => {
         const user = await User.build({name: name, email: email, passwordHash: hash});
 
         console.log(salt, hash, user)
+
+        try {
+            await user.save();
+        } catch (error) {
+            done(error);
+        }
     } catch (error) {
-        done (error)
+        done (error);
     }
 };
 

@@ -17,7 +17,7 @@ const productRouter = require("./routes/products");
 const errorRouter = require("./routes/error");
 const userRouter = require("./routes/user");
 
-const { registerStrategy } = require("./auth");
+const { registerStrategy, loginStrategy } = require("./auth");
 
 const app = express();
 app.use(express.json());
@@ -29,6 +29,7 @@ app.use(cors());
 // });
 
 passport.use("register", registerStrategy);
+passport.use("login", loginStrategy);
 
 app.use("/", indexRouter);
 app.use("/test", testRouter);

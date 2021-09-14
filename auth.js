@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 
-//step one - 
+const mappings = {usernameField: "email", passwordField: "password"};
 
 const register = async (email, password, done) => {
     
@@ -28,12 +28,9 @@ const register = async (email, password, done) => {
 };
 
 const login = async (email, password, done) => {
-    console.log("login auth hit")
-    console.log(email, password)
     try {
-        console.log("auth try block hit")
         const user = await User.findOne({where: {email}});
-        console.log(user)
+        
         if (!user) {
             console.log("not user")
             return done(null, false, {msg: "This user was not found"})
@@ -41,13 +38,13 @@ const login = async (email, password, done) => {
         }
 
         const match = await bcrypt.compare(password, user.passwordHash);
-        console.log(match)
+        
         if (!match) {
-            console.log("not match")
+            
             return done(null, false, {msg: "Your password has not matched"})
         }
 
-        return done(null, user);
+        return done(null, {id: user.id, email: user.email});
 
     } catch (error) {
         console.log(error)
@@ -56,8 +53,8 @@ const login = async (email, password, done) => {
     }
 };
 
-const registerStrategy = new LocalStrategy({usernameField: "email", passwordField: "password"}, register);
-const loginStrategy = new LocalStrategy(login);
+const registerStrategy = new LocalStrategy(mappings, register);
+const loginStrategy = new LocalStrategy(mappings, login);
 
 module.exports = {
     registerStrategy,

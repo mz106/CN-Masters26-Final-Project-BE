@@ -10,21 +10,14 @@ const User = connection.define( "User", {
       type: DataTypes.STRING,
        allowNull: false
     },
+    passwordHash: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
   {
-    // indexes: [{ unique: true, fields: ["UserId"] }],
+    indexes: [{unique: true, fields: ['name']}]
   }
 );
-
-
-const main = async() =>{
-    try{
-        await User.sync({alter: true});
-    }catch(error){
-        console.log(error);
-    }
-}
-
-main();
 
 module.exports = User;

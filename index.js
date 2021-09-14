@@ -1,4 +1,5 @@
 require("dotenv").config();
+const passport = require("passport");
 const express = require("express");
 const cors = require("cors");
 
@@ -16,6 +17,8 @@ const productRouter = require("./routes/products");
 const errorRouter = require("./routes/error");
 const userRouter = require("./routes/user");
 
+const { registerStrategy } = require("./auth");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -24,6 +27,8 @@ app.use(cors());
 //   res.header('Access-Control-Allow-Origin', '*');
 //   next();
 // });
+
+passport.use("register", registerStrategy);
 
 app.use("/", indexRouter);
 app.use("/test", testRouter);
@@ -35,6 +40,7 @@ app.use("*", errorRouter);
 app.listen(port, async () => {
   console.log("app is listening");
   connection.authenticate();
+  await User.sync({alter: true});
   await Test.sync({ alter: true }); // This creates/updates tables
   await Products.sync({ alter: true }); // This creates/updates tables
   console.log("HTTP Server Started");

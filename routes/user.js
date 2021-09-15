@@ -12,20 +12,20 @@ const profile = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-    
-    req.user.email ? res.status(201).json({msg: "You have successfully registered"}) : res.status(401).json({msg: "This user already exixts"});
+    const token = jwt.sign({user: {id: req.user.id, email: req.user.email}}, process.env.SECRET_KEY);
+    req.user.email ? res.status(201).json({msg: "You have successfully registered", email: req.user.email, auth: true, token}) : res.status(401).json({msg: "This user already exixts"});
 };
 
 const login = (req, res, next) => {
     passport.authenticate('login', (err, user, info) => {
         try {
         if (err) {
-            return res.status(500).json({msg: "Internal server error"})
+            return res.status(500).json({msg: "Internal server error", auth: false})
         } else if (!user) {
-            return res.status(401).json({msg: "User has not been found"})
+            return res.status(401).json({msg: "User has not been found", auth: false})
         }
         const token = jwt.sign({user: {id: user.id, email: user.email}}, process.env.SECRET_KEY);
-        const fn = (error) => error? next(error) : res.status(200).json({user, token});
+        const fn = (error) => error? next(error) : res.status(200).json({user, token, msg: "User authenticated", auth: true});
         req.login(user, config, fn);
         } catch (error) {
             return next(error);

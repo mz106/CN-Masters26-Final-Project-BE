@@ -21,7 +21,7 @@ const { registerStrategy, loginStrategy, verifyStrategy } = require("./auth");
 
 const app = express();
 app.use(express.json());
-app.use(cors({origin: process.env.ORIGIN}));
+app.use(cors());   //{origin: process.env.ORIGIN}
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');

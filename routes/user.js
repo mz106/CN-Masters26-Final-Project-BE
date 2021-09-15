@@ -2,6 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const { CommandCompleteMessage } = require("pg-protocol/dist/messages");
 const config = {session: false};
 
 
@@ -34,8 +35,14 @@ const login = (req, res, next) => {
     
 };
 
+const auth = (req, res) => {
+    res.status(200).json(req.token);
+    
+};
+
 router.post("/register", passport.authenticate("register", config), register);
 router.post("/login", login);
 router.get("/profile", passport.authenticate("jwt", config), profile);
+router.get("/auth", (req, res) => res.status(200).json({msg: "auth hit", token: req.headers.token}));
 
 module.exports = router;

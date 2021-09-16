@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
-passport.use(verifyStrategy);
+passport.use(verifyStrategy, console.log("verify on index.js"));
 
 app.use("/", indexRouter);
 app.use("/test", testRouter);

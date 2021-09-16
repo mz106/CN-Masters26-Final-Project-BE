@@ -57,7 +57,9 @@ const login = async (email, password, done) => {
 };
 
 const verify = (token, done) => {
+    console.log("verify function hit")
     try {
+        console.log(token.user, "this is the token form verify function")
         done(null, token.user);
     } catch(error) {
         done(error);

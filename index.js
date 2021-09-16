@@ -21,7 +21,11 @@ const { registerStrategy, loginStrategy, verifyStrategy } = require("./auth");
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());   //{origin: process.env.ORIGIN}
+
 app.use(cors());
+
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -30,7 +34,7 @@ app.use((req, res, next) => {
 
 passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
-passport.use(verifyStrategy);
+passport.use(verifyStrategy, console.log("verify on index.js"));
 
 app.use("/", indexRouter);
 app.use("/test", testRouter);

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   // parseInt(req.query.limit) || 6, parseInt(req.query.offset) || 1
   try { 
-    const products = await findAllProducts(parseInt(req.query.limit, 10) || 6, parseInt(req.query.offset, 10) || 0);
+    const products = await findAllProducts(parseInt(req.query.limit, 10) || 6, parseInt(req.query.offset, 10) || 0, req.query.cat);
     return res.status(200).json(products);
   } catch (error) {
     res.status(500).json({msg: `${error}`});
